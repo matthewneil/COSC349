@@ -1,4 +1,5 @@
 Vagrant.configure("2") do |config|
+config.vm.box = "ubuntu/xenial64"
 
 	#Timezone Web Server
 	config.vm.define "webserver" do |webserver|
@@ -15,8 +16,8 @@ Vagrant.configure("2") do |config|
       			service apache2 reload
     		SHELL
 	end
-
-	config.vm.box = "ubuntu/xenial64"
+	
+	#Timezone converter database
 	config.vm.define "dbserver" do |dbserver|
     
 	dbserver.vm.hostname = "dbserver-tz"
@@ -40,4 +41,8 @@ Vagrant.configure("2") do |config|
     SHELL
   end
 
+  config.vm.define "tzconverter" do |tzconverter|
+  tzconverter.vm.network "private_network", ip: "192.168.2.13"
+  tzconverter.vm.synced_folder ".", "/vagrant", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=777"] 
+  end
 end
