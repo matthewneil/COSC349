@@ -6,6 +6,7 @@
 
 
   <body>
+    
 
     <p id="output"></p>
     <?php
@@ -57,7 +58,7 @@
   }
 
   ?>
-  
+   
   <?php
     
     $db_host = '192.168.2.12';
@@ -71,7 +72,7 @@
 
     $q = $pdo->query("SELECT * FROM timezones");
   while($row = $q->fetch()){
-  $default = $row["UserID"].$row["defaultzone"];
+  $default = $row["defaultzone"];
   echo $default;
 
   if($default == $timezone){
@@ -83,7 +84,7 @@
   $_SESSION['time'] = $default;
 
   ?>
-
+  <p>test</p>
   <?php
 
 
